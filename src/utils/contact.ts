@@ -10,24 +10,16 @@ export type ContactAction = {
   href: string;
   label: string;
   external?: boolean;
-  download?: boolean;
 };
 
 export function getContactActions(contact: ContactActionSource): ContactAction[] {
   const actions: ContactAction[] = [];
+  const cvHref = contact.cvOnline || contact.cvDownload;
 
-  if (contact.cvDownload) {
+  if (cvHref) {
     actions.push({
-      href: contact.cvDownload,
-      label: "Download CV",
-      download: true
-    });
-  }
-
-  if (contact.cvOnline) {
-    actions.push({
-      href: contact.cvOnline,
-      label: "View CV Online",
+      href: cvHref,
+      label: "View Lara's CV",
       external: true
     });
   }

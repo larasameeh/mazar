@@ -12,8 +12,8 @@ export const siteConfig = {
     "An immersive maritime museum where Suez's cultural memory, craft, water, and heritage are transformed into a contemporary experience.",
   logoWordmark: publicAsset("images/brand/mazar-wordmark.webp"),
   logoEmblem: publicAsset("images/brand/mazar-emblem.webp"),
-  heroDesktop: publicAsset("images/hero/hero-desktop.webp"),
-  heroMobile: publicAsset("images/hero/hero-mobile.webp")
+  heroDesktop: publicAsset("maritime_museum_cinematic_sunset_4k_banner.png"),
+  heroMobile: publicAsset("maritime_museum_cinematic_sunset_4k_banner.png")
 };
 
 export const navItems: NavItem[] = [
@@ -156,10 +156,10 @@ export const contactConfig: ContactConfig = {
   photo: publicAsset("images/contact/lara_sameeh.png"),
   photoAlt: "Portrait of Lara Sameeh",
   email: "larasameeh249@gmail.com",
-  phone: "",
+  phone: "+20 101 121 3951",
   location: "Cairo, Egypt",
   linkedin: "https://www.linkedin.com/in/lara-sameeh-6b07a5312/",
-  cvDownload: publicAsset("Lara_Sameeh_CV.pdf"),
+  cvDownload: "",
   cvOnline: publicAsset("Lara_Sameeh_CV.pdf"),
   behance: "",
 };

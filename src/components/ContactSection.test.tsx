@@ -82,16 +82,22 @@ describe("ContactSection", () => {
     expect(screen.getByText("LinkedIn").classList.contains("contact-label")).toBe(true);
   });
 
-  it("renders the configured CV as direct view and download actions", () => {
+  it("renders the configured CV as a single direct view action", () => {
     render(<ContactSection contact={contactConfig} />);
 
-    const downloadLink = screen.getByRole("link", { name: /Download CV/i });
-    const viewLink = screen.getByRole("link", { name: /View CV Online/i });
+    const viewLink = screen.getByRole("link", { name: "View Lara's CV" });
 
-    expect(downloadLink.getAttribute("href")).toBe("/Lara_Sameeh_CV.pdf");
-    expect(downloadLink.hasAttribute("download")).toBe(true);
+    expect(screen.queryByRole("link", { name: /Download CV/i })).toBeNull();
     expect(viewLink.getAttribute("href")).toBe("/Lara_Sameeh_CV.pdf");
     expect(viewLink.getAttribute("target")).toBe("_blank");
     expect(viewLink.hasAttribute("download")).toBe(false);
+  });
+
+  it("renders the configured mobile number as a phone link", () => {
+    render(<ContactSection contact={contactConfig} />);
+
+    expect(screen.getByRole("link", { name: /\+20 101 121 3951/i }).getAttribute("href")).toBe(
+      "tel:+201011213951"
+    );
   });
 });
