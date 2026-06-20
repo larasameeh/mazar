@@ -53,4 +53,13 @@ describe("ContactSection", () => {
       "https://www.linkedin.com/in/lara-sameeh-6b07a5312/"
     );
   });
+
+  it("marks contact label words separately so mobile can show icon and content only", () => {
+    render(<ContactSection contact={baseContact} />);
+
+    expect(document.querySelectorAll(".contact-label")).toHaveLength(3);
+    expect(screen.getByText("Location").classList.contains("contact-label")).toBe(true);
+    expect(screen.getByText("Email").classList.contains("contact-label")).toBe(true);
+    expect(screen.getByText("LinkedIn").classList.contains("contact-label")).toBe(true);
+  });
 });

@@ -43,18 +43,18 @@ export function ContactSection({ contact }: ContactSectionProps) {
         <dl className="contact-list">
           {contact.location ? (
             <div>
-              <dt>
+              <dt aria-label="Location">
                 <MapPin size={17} aria-hidden="true" />
-                Location
+                <span className="contact-label">Location</span>
               </dt>
               <dd>{contact.location}</dd>
             </div>
           ) : null}
           {contact.email ? (
             <div>
-              <dt>
+              <dt aria-label="Email">
                 <Mail size={17} aria-hidden="true" />
-                Email
+                <span className="contact-label">Email</span>
               </dt>
               <dd>
                 <a className="contact-link" href={`mailto:${contact.email}`}>
@@ -66,9 +66,9 @@ export function ContactSection({ contact }: ContactSectionProps) {
           ) : null}
           {contact.phone ? (
             <div>
-              <dt>
+              <dt aria-label="Phone">
                 <Phone size={17} aria-hidden="true" />
-                Phone
+                <span className="contact-label">Phone</span>
               </dt>
               <dd>
                 <a className="contact-link" href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}>
@@ -80,11 +80,11 @@ export function ContactSection({ contact }: ContactSectionProps) {
           ) : null}
           {contact.linkedin ? (
             <div>
-              <dt>
+              <dt aria-label="LinkedIn">
                 <span className="linkedin-mark" aria-hidden="true">
                   in
                 </span>
-                LinkedIn
+                <span className="contact-label">LinkedIn</span>
               </dt>
               <dd>
                 <a className="contact-link" href={contact.linkedin} target="_blank" rel="noreferrer">

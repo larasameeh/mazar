@@ -931,6 +931,10 @@ img {
   color: var(--bronze);
 }
 
+.contact-label {
+  display: inline;
+}
+
 .linkedin-mark {
   display: inline-grid;
   width: 17px;
@@ -947,6 +951,7 @@ img {
 
 .contact-list dd {
   margin: 0;
+  min-width: 0;
   color: var(--muted-strong);
 }
 
@@ -954,6 +959,8 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   color: inherit;
 }
 
@@ -1081,7 +1088,17 @@ img {
   }
 
   .contact-list div {
-    grid-template-columns: 1fr;
+    grid-template-columns: 24px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-list dt {
+    justify-content: center;
+  }
+
+  .contact-label {
+    display: none;
   }
 }
 
