@@ -17,11 +17,12 @@ const baseContact = {
 };
 
 describe("ContactSection", () => {
-  it("uses Lara's name as the section heading without project-owner intro copy", () => {
+  it("keeps the contact eyebrow and removes only the project-owner intro copy", () => {
     render(<ContactSection contact={baseContact} />);
 
     expect(screen.getByRole("region", { name: "Lara Sameeh" })).toBeTruthy();
-    expect(screen.getByRole("heading", { name: "Lara Sameeh", level: 2 })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Lara Sameeh", level: 2 }).closest(".section__header")).toBeTruthy();
+    expect(screen.getByText("Graduate Architect Contact / CV")).toBeTruthy();
     expect(screen.queryByText("Project owner")).toBeNull();
     expect(screen.queryByText("Portfolio contact details and professional links.")).toBeNull();
   });

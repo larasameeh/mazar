@@ -13,6 +13,11 @@ export function BannerSection({ config }: BannerSectionProps) {
 
   return (
     <section className="section banner-section" id="banner" aria-labelledby="banner-title">
+      <div className="section__header">
+        <p className="section__eyebrow">Graduation Banner</p>
+        <h2 id="banner-title">Presentation board</h2>
+      </div>
+
       <div className="banner-panel">
         <div className="banner-preview">
           {hasPreview ? (
@@ -26,8 +31,6 @@ export function BannerSection({ config }: BannerSectionProps) {
         </div>
 
         <div className="banner-content">
-          <p className="section__eyebrow">Graduation Banner</p>
-          <h2 id="banner-title">Presentation board</h2>
           <p>
             A compressed preview and print-ready downloads can be linked here without slowing down the main page.
           </p>
