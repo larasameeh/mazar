@@ -6,7 +6,7 @@ export const siteConfig = {
   projectSubtitle: "Maritime Museum",
   projectType: "Architecture Graduation Project",
   year: "2026",
-  owner: "Youssef George",
+  owner: "Lara Sameeh",
   university: "Ain Shams University",
   description:
     "An immersive maritime museum where Suez's cultural memory, craft, water, and heritage are transformed into a contemporary architectural experience.",
@@ -150,14 +150,15 @@ export const bannerConfig: BannerConfig = {
 };
 
 export const contactConfig: ContactConfig = {
-  name: "Youssef George",
+  name: "Lara Sameeh",
   role: "Architecture Graduate",
-  email: "",
+  photo: "",
+  photoAlt: "Portrait of Lara Sameeh",
+  email: "larasameeh249@gmail.com",
   phone: "",
   location: "Cairo, Egypt",
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/lara-sameeh-6b07a5312/",
   cvDownload: "",
   cvOnline: "",
   behance: "",
-  instagram: ""
 };

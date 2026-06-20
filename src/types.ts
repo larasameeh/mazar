@@ -32,6 +32,8 @@ export type BannerConfig = {
 export type ContactConfig = {
   name: string;
   role: string;
+  photo: string;
+  photoAlt: string;
   email: string;
   phone: string;
   location: string;
@@ -39,5 +41,4 @@ export type ContactConfig = {
   cvDownload: string;
   cvOnline: string;
   behance: string;
-  instagram: string;
 };

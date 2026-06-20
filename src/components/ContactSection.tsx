@@ -6,21 +6,35 @@ type ContactSectionProps = {
   contact: ContactConfig;
 };
 
+function getInitials(name: string) {
+  const words = name.trim().split(/\s+/).filter(Boolean);
+
+  if (words.length === 0) {
+    return "";
+  }
+
+  return words
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase())
+    .join("");
+}
+
 export function ContactSection({ contact }: ContactSectionProps) {
   const actions = getContactActions(contact);
+  const photoAlt = contact.photoAlt || `Portrait of ${contact.name}`;
 
   return (
     <section className="section contact-section" id="contact" aria-labelledby="contact-title">
       <div className="section__header">
-        <p className="section__eyebrow">Contact / CV</p>
+        <p className="section__eyebrow">Graduate Architect Contact / CV</p>
         <h2 id="contact-title">Project owner</h2>
         <p>Portfolio contact details and professional links.</p>
       </div>
 
       <div className="contact-panel">
         <div className="contact-card">
-          <div className="contact-avatar" aria-hidden="true">
-            YG
+          <div className={contact.photo ? "contact-avatar contact-avatar--photo" : "contact-avatar"}>
+            {contact.photo ? <img src={contact.photo} alt={photoAlt} /> : <span aria-hidden="true">{getInitials(contact.name)}</span>}
           </div>
           <div>
             <h3>{contact.name}</h3>
@@ -45,7 +59,10 @@ export function ContactSection({ contact }: ContactSectionProps) {
                 Email
               </dt>
               <dd>
-                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                <a className="contact-link" href={`mailto:${contact.email}`}>
+                  {contact.email}
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
               </dd>
             </div>
           ) : null}
@@ -56,7 +73,26 @@ export function ContactSection({ contact }: ContactSectionProps) {
                 Phone
               </dt>
               <dd>
-                <a href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}>{contact.phone}</a>
+                <a className="contact-link" href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}>
+                  {contact.phone}
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              </dd>
+            </div>
+          ) : null}
+          {contact.linkedin ? (
+            <div>
+              <dt>
+                <span className="linkedin-mark" aria-hidden="true">
+                  in
+                </span>
+                LinkedIn
+              </dt>
+              <dd>
+                <a className="contact-link" href={contact.linkedin} target="_blank" rel="noreferrer">
+                  LinkedIn profile
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
               </dd>
             </div>
           ) : null}
