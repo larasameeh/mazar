@@ -5,6 +5,7 @@ import { Footer } from "./components/Footer";
 import { GallerySection } from "./components/GallerySection";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { MuseumWalkthrough } from "./components/MuseumWalkthrough";
 import { PanoramaSection } from "./components/PanoramaSection";
 import {
   bannerConfig,
@@ -68,21 +69,20 @@ export default function App() {
       />
       <main>
         <Hero config={siteConfig} />
+        <MuseumWalkthrough videoId="9DbukX_22f8" />
+        <PanoramaSection mapImage={panoramaMapImage} hotspots={panoramaHotspots} />
         <GallerySection
           id="exterior"
           eyebrow="Exterior Renders"
           title="The museum as a coastal threshold"
-          description="Arrival views, roof studies, public edges, and waterfront moments."
           images={exteriorImages}
         />
         <GallerySection
           id="interior"
           eyebrow="Interior Renders"
           title="A route through maritime memory"
-          description="The main hall sequence, ready to expand as more interior renders are added."
           images={interiorImages}
         />
-        <PanoramaSection mapImage={panoramaMapImage} hotspots={panoramaHotspots} />
         <BannerSection config={bannerConfig} />
         <ContactSection contact={contactConfig} />
       </main>

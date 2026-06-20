@@ -8,7 +8,6 @@ type GallerySectionProps = {
   id: string;
   eyebrow: string;
   title: string;
-  description: string;
   images: GalleryImage[];
 };
 
@@ -16,7 +15,7 @@ function isControlPress(target: EventTarget | null): boolean {
   return target instanceof Element && target.closest("button") !== null;
 }
 
-export function GallerySection({ id, eyebrow, title, description, images }: GallerySectionProps) {
+export function GallerySection({ id, eyebrow, title, images }: GallerySectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -84,7 +83,6 @@ export function GallerySection({ id, eyebrow, title, description, images }: Gall
       <div className="section__header">
         <p className="section__eyebrow">{eyebrow}</p>
         <h2 id={`${id}-title`}>{title}</h2>
-        <p>{description}</p>
       </div>
 
       {!hasImages ? (

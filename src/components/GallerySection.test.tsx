@@ -32,7 +32,6 @@ function renderGallery() {
       id="exterior"
       eyebrow="Exterior Gallery"
       title="Exterior renders"
-      description="Waterfront architectural views."
       images={galleryImages}
     />
   );

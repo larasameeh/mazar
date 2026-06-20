@@ -17,9 +17,10 @@ export const siteConfig = {
 };
 
 export const navItems: NavItem[] = [
+  { id: "walkthrough", label: "Museum Walkthrough" },
+  { id: "panorama", label: "360 Experience" },
   { id: "exterior", label: "Exterior" },
   { id: "interior", label: "Interior" },
-  { id: "panorama", label: "360 Experience" },
   { id: "banner", label: "Banner" },
   { id: "contact", label: "Contact" }
 ];
