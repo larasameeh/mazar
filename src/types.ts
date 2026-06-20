@@ -36,6 +36,7 @@ export type ContactConfig = {
   photoAlt: string;
   email: string;
   phone: string;
+  university: string;
   location: string;
   linkedin: string;
   cvDownload: string;

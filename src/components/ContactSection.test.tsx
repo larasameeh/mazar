@@ -4,9 +4,10 @@ import { ContactSection } from "./ContactSection";
 
 const baseContact = {
   name: "Lara Sameeh",
-  role: "Architecture Graduate",
+  role: "Housing Architecture and Urban Development Graduate",
   email: "larasameeh249@gmail.com",
   phone: "",
+  university: "Faculty of Engineering, Ain Shams University",
   location: "Cairo, Egypt",
   linkedin: "https://www.linkedin.com/in/lara-sameeh-6b07a5312/",
   cvDownload: "",

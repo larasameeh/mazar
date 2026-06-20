@@ -151,7 +151,8 @@ export const bannerConfig: BannerConfig = {
 
 export const contactConfig: ContactConfig = {
   name: "Lara Sameeh",
-  role: "Architecture Graduate",
+  role: "Housing Architecture and Urban Development Graduate",
+  university: "Faculty of Engineering, Ain Shams University",
   photo: publicAsset("images/contact/lara_sameeh.png"),
   photoAlt: "Portrait of Lara Sameeh",
   email: "larasameeh249@gmail.com",

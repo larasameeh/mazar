@@ -1,4 +1,4 @@
-import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { ExternalLink, Mail, MapPin, Phone, University } from "lucide-react";
 import type { ContactConfig } from "../types";
 import { getContactActions } from "../utils/contact";
 
@@ -41,6 +41,15 @@ export function ContactSection({ contact }: ContactSectionProps) {
         </div>
 
         <dl className="contact-list">
+          {contact.university ? (
+            <div>
+              <dt aria-label="University">
+                <University size={17} aria-hidden="true" />
+                <span className="contact-label">University</span>
+              </dt>
+              <dd>{contact.university}</dd>
+            </div>
+          ) : null}
           {contact.location ? (
             <div>
               <dt aria-label="Location">
