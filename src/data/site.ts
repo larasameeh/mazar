@@ -144,10 +144,11 @@ export const panoramaHotspots: PanoramaHotspot[] = [
 ];
 
 export const bannerConfig: BannerConfig = {
-  previewImage: "",
+  previewImage: publicAsset("images/banner/banner-preview.webp"),
+  fullImage: publicAsset("images/banner/banner-full.webp"),
   pdf: "",
   jpg: "",
-  externalLink: ""
+  externalLink: "https://drive.google.com/drive/folders/1c6HV7OclWUdVZDagOXVpt7Dn0LCzKosI"
 };
 
 export const contactConfig: ContactConfig = {

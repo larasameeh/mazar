@@ -24,6 +24,7 @@ export type PanoramaHotspot = {
 
 export type BannerConfig = {
   previewImage: string;
+  fullImage: string;
   pdf: string;
   jpg: string;
   externalLink: string;

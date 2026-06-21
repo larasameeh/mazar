@@ -1,21 +1,40 @@
-import { Download, ExternalLink } from "lucide-react";
+import { Maximize2 } from "lucide-react";
 import type { BannerConfig } from "../types";
 
 type BannerSectionProps = {
   config: BannerConfig;
 };
 
+function GoogleDriveMark() {
+  return (
+    <span className="drive-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path d="M8.1 3.5h7.8l6.1 10.6h-7.8L8.1 3.5Z" fill="#fbbc04" />
+        <path d="M2 14.1 8.1 3.5l3.9 6.8-6.1 10.2L2 14.1Z" fill="#34a853" />
+        <path d="M5.9 20.5 9.8 14h12.2l-3.9 6.5H5.9Z" fill="#4285f4" />
+      </svg>
+    </span>
+  );
+}
+
 export function BannerSection({ config }: BannerSectionProps) {
   const hasPreview = Boolean(config.previewImage);
-  const hasPdf = Boolean(config.pdf);
-  const hasJpg = Boolean(config.jpg);
-  const hasExternal = Boolean(config.externalLink);
+  const hasFullImage = Boolean(config.fullImage);
+  const hasProjectFiles = Boolean(config.externalLink);
 
   return (
     <section className="section banner-section" id="banner" aria-labelledby="banner-title">
-      <div className="section__header">
+      <div className="section__header banner-section__header">
         <p className="section__eyebrow">Graduation Banner</p>
-        <h2 id="banner-title">Presentation board</h2>
+        <div className="banner-title-row">
+          <h2 id="banner-title">Presentation board</h2>
+          {hasProjectFiles ? (
+            <a className="button button--primary banner-drive-button" href={config.externalLink} target="_blank" rel="noreferrer">
+              <GoogleDriveMark />
+              View project files
+            </a>
+          ) : null}
+        </div>
       </div>
 
       <div className="banner-panel">
@@ -28,38 +47,17 @@ export function BannerSection({ config }: BannerSectionProps) {
               <strong>Presentation board</strong>
             </div>
           )}
-        </div>
-
-        <div className="banner-content">
-          <p>
-            A compressed preview and print-ready downloads can be linked here without slowing down the main page.
-          </p>
-          <div className="banner-actions">
-            {hasPreview ? (
-              <a className="button button--secondary" href={config.previewImage} target="_blank" rel="noreferrer">
-                Preview Banner
-                <ExternalLink size={17} aria-hidden="true" />
-              </a>
-            ) : null}
-            {hasPdf ? (
-              <a className="button button--primary" href={config.pdf} download>
-                Download PDF
-                <Download size={17} aria-hidden="true" />
-              </a>
-            ) : null}
-            {hasJpg ? (
-              <a className="button button--secondary" href={config.jpg} download>
-                Download JPG
-                <Download size={17} aria-hidden="true" />
-              </a>
-            ) : null}
-            {hasExternal ? (
-              <a className="button button--secondary" href={config.externalLink} target="_blank" rel="noreferrer">
-                External Link
-                <ExternalLink size={17} aria-hidden="true" />
-              </a>
-            ) : null}
-          </div>
+          {hasFullImage ? (
+            <a
+              className="gallery__fullscreen banner-preview__fullscreen"
+              href={config.fullImage}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open full-resolution presentation board"
+            >
+              <Maximize2 size={18} aria-hidden="true" />
+            </a>
+          ) : null}
         </div>
       </div>
     </section>

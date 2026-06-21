@@ -36,7 +36,7 @@ describe("App", () => {
     ]);
     expect(walkthrough.compareDocumentPosition(panorama) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
     expect(panorama.compareDocumentPosition(exterior) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
-    expect(video.getAttribute("src")).toBe("https://www.youtube.com/embed/9DbukX_22f8");
+    expect(video.getAttribute("src")).toBe("https://www.youtube.com/embed/o2o0bFeJtQI");
     expect(screen.queryByText("A full video route through the MAZAR Maritime Museum experience.")).toBeNull();
     expect(screen.queryByText("Arrival views, roof studies, public edges, and waterfront moments.")).toBeNull();
     expect(screen.queryByText("The main hall sequence, ready to expand as more interior renders are added.")).toBeNull();

@@ -445,6 +445,24 @@ img {
   color: var(--disabled-text);
 }
 
+.banner-drive-button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.drive-mark {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+}
+
+.drive-mark svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
 .section {
   width: min(var(--content-width), calc(100% - 40px));
   margin: 0 auto;
@@ -455,6 +473,17 @@ img {
 .section__header {
   max-width: 720px;
   margin-bottom: 34px;
+}
+
+.banner-section__header {
+  max-width: none;
+}
+
+.banner-title-row {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
 .section__header--wide {
@@ -866,12 +895,18 @@ img {
   padding: clamp(18px, 4vw, 34px);
 }
 
+.banner-panel {
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
 .banner-content {
   min-width: 0;
   max-width: 540px;
 }
 
 .banner-preview {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -879,9 +914,14 @@ img {
 }
 
 .banner-preview img {
+  display: block;
   width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.banner-preview__fullscreen {
+  text-decoration: none;
 }
 
 .banner-preview__placeholder {
@@ -1139,6 +1179,11 @@ img {
   .banner-panel,
   .contact-panel {
     grid-template-columns: 1fr;
+  }
+
+  .banner-title-row {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .contact-list div {
