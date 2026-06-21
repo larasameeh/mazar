@@ -69,7 +69,7 @@ export default function App() {
       />
       <main>
         <Hero config={siteConfig} />
-        <MuseumWalkthrough videoId="9DbukX_22f8" />
+        <MuseumWalkthrough videoId="o2o0bFeJtQI" />
         <PanoramaSection mapImage={panoramaMapImage} hotspots={panoramaHotspots} />
         <GallerySection
           id="exterior"
