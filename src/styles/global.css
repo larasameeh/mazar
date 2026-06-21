@@ -513,6 +513,57 @@ img {
   line-height: 1.7;
 }
 
+.wait-section {
+  padding-block: clamp(72px, 10vw, 126px);
+}
+
+.wait-panel {
+  display: grid;
+  gap: 22px;
+  max-width: 760px;
+  border-left: 1px solid var(--line-strong);
+  padding-left: clamp(22px, 4vw, 44px);
+}
+
+.wait-panel h2 {
+  margin: 0;
+  font-family: var(--display-font);
+  font-size: clamp(3.4rem, 10vw, 8.4rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.wait-panel p:not(.section__eyebrow) {
+  max-width: 610px;
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: clamp(1.05rem, 1.5vw, 1.32rem);
+  line-height: 1.75;
+}
+
+.wait-line {
+  display: grid;
+  grid-template-columns: 1fr 0.42fr 0.18fr;
+  gap: 10px;
+  width: min(420px, 100%);
+  margin-top: 8px;
+}
+
+.wait-line span {
+  height: 3px;
+  background: var(--bronze);
+}
+
+.wait-line span:nth-child(2) {
+  opacity: 0.52;
+}
+
+.wait-line span:nth-child(3) {
+  opacity: 0.26;
+}
+
 .gallery {
   display: grid;
   gap: 18px;

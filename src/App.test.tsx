@@ -16,29 +16,23 @@ describe("App", () => {
     vi.unstubAllGlobals();
   });
 
-  it("places walkthrough first, 360 experience second, and removes section description copy", () => {
+  it("shows the temporary wait page with only the hero, wait message, and contact details", () => {
     render(<App />);
 
     const nav = screen.getByRole("navigation", { name: "Primary navigation" });
     const navLinks = within(nav).getAllByRole("link");
-    const walkthrough = screen.getByRole("region", { name: "Museum Walkthrough" });
-    const panorama = screen.getByRole("region", { name: "Enter the exhibition hall in 360 immersive experience" });
-    const exterior = screen.getByRole("region", { name: "The museum as a coastal threshold" });
-    const video = screen.getByTitle("MAZAR museum walkthrough video");
+    const hero = screen.getByRole("region", { name: /mazar/i });
+    const wait = screen.getByRole("region", { name: "Wait for it" });
+    const contact = screen.getByRole("region", { name: "Lara Sameeh" });
 
-    expect(navLinks.map((link) => link.textContent)).toEqual([
-      "Museum Walkthrough",
-      "360 Experience",
-      "Exterior",
-      "Interior",
-      "Banner",
-      "Contact"
-    ]);
-    expect(walkthrough.compareDocumentPosition(panorama) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
-    expect(panorama.compareDocumentPosition(exterior) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
-    expect(video.getAttribute("src")).toBe("https://www.youtube.com/embed/o2o0bFeJtQI");
-    expect(screen.queryByText("A full video route through the MAZAR Maritime Museum experience.")).toBeNull();
-    expect(screen.queryByText("Arrival views, roof studies, public edges, and waterfront moments.")).toBeNull();
-    expect(screen.queryByText("The main hall sequence, ready to expand as more interior renders are added.")).toBeNull();
+    expect(navLinks.map((link) => link.textContent)).toEqual(["Contact"]);
+    expect(hero.compareDocumentPosition(wait) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
+    expect(wait.compareDocumentPosition(contact) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
+    expect(screen.getByText(/The full MAZAR walkthrough is docking here next week/i)).not.toBeNull();
+    expect(screen.queryByRole("region", { name: "Museum Walkthrough" })).toBeNull();
+    expect(screen.queryByRole("region", { name: "Enter the exhibition hall in 360 immersive experience" })).toBeNull();
+    expect(screen.queryByRole("region", { name: "The museum as a coastal threshold" })).toBeNull();
+    expect(screen.queryByRole("region", { name: "A route through maritime memory" })).toBeNull();
+    expect(screen.queryByRole("region", { name: "Presentation board" })).toBeNull();
   });
 });

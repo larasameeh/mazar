@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
-import { BannerSection } from "./components/BannerSection";
 import { ContactSection } from "./components/ContactSection";
 import { Footer } from "./components/Footer";
-import { GallerySection } from "./components/GallerySection";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { MuseumWalkthrough } from "./components/MuseumWalkthrough";
-import { PanoramaSection } from "./components/PanoramaSection";
-import {
-  bannerConfig,
-  contactConfig,
-  exteriorImages,
-  interiorImages,
-  navItems,
-  panoramaHotspots,
-  panoramaMapImage,
-  siteConfig
-} from "./data/site";
+import { contactConfig, siteConfig } from "./data/site";
 import { applyTheme, getInitialTheme, getNextTheme, persistTheme, type ThemeMode } from "./utils/theme";
 
-const observedSections = ["hero", ...navItems.map((item) => item.id)];
+const temporaryNavItems = [{ id: "contact", label: "Contact" }];
+const observedSections = ["hero", "wait", "contact"];
+
+function WaitSection() {
+  return (
+    <section className="section wait-section" id="wait" aria-labelledby="wait-title">
+      <div className="wait-panel">
+        <p className="section__eyebrow">Temporary hold</p>
+        <h2 id="wait-title">Wait for it</h2>
+        <p>
+          The full MAZAR walkthrough is docking here next week. For now, the museum keeps its reveal under wraps:
+          one hero image, one quiet pause, and Lara's contact details below.
+        </p>
+        <div className="wait-line" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -62,28 +70,14 @@ export default function App() {
       <Header
         activeSection={activeSection}
         logoEmblem={siteConfig.logoEmblem}
-        navItems={navItems}
+        navItems={temporaryNavItems}
         onThemeToggle={() => setTheme((currentTheme) => getNextTheme(currentTheme))}
         projectName={siteConfig.projectName}
         theme={theme}
       />
       <main>
         <Hero config={siteConfig} />
-        <MuseumWalkthrough videoId="o2o0bFeJtQI" />
-        <PanoramaSection mapImage={panoramaMapImage} hotspots={panoramaHotspots} />
-        <GallerySection
-          id="exterior"
-          eyebrow="Exterior Renders"
-          title="The museum as a coastal threshold"
-          images={exteriorImages}
-        />
-        <GallerySection
-          id="interior"
-          eyebrow="Interior Renders"
-          title="A route through maritime memory"
-          images={interiorImages}
-        />
-        <BannerSection config={bannerConfig} />
+        <WaitSection />
         <ContactSection contact={contactConfig} />
       </main>
       <Footer />
