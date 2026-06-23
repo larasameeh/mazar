@@ -74,13 +74,13 @@ export default function App() {
         <GallerySection
           id="exterior"
           eyebrow="Exterior Renders"
-          title="The museum as a coastal threshold"
+          title="Exterior Shots"
           images={exteriorImages}
         />
         <GallerySection
           id="interior"
           eyebrow="Interior Renders"
-          title="A route through maritime memory"
+          title="Interior Shots"
           images={interiorImages}
         />
         <BannerSection config={bannerConfig} />

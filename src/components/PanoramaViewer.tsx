@@ -1,4 +1,4 @@
-import { Smartphone, X } from "lucide-react";
+import { Maximize2, Minimize2, Smartphone, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { PanoramaHotspot } from "../types";
 import { publicAsset } from "../utils/assets";
@@ -11,7 +11,7 @@ type PannellumViewer = {
 type PannellumViewerConfig = {
   type: "equirectangular";
   panorama: string;
-  title: string;
+  title?: string;
   autoLoad: boolean;
   showControls: boolean;
   showFullscreenCtrl: boolean;
@@ -40,6 +40,9 @@ declare global {
 
 let pannellumLoadPromise: Promise<PannellumApi> | null = null;
 const PANORAMA_BACKGROUND_MUSIC = publicAsset("360-background-music.m4a");
+const CIRCULAR_GALLERY_MUSIC = publicAsset("pharonic-music.m4a");
+const OTTOMAN_GALLERY_MUSIC = publicAsset("ottoman-music.m4a");
+const IMMERSIVE_THEATER_MUSIC = publicAsset("Going forth carrying a weapon - Egyptian War Song - Ingen.mp3");
 const MOBILE_USER_AGENT_PATTERN = /Android|iPhone|iPad|iPod|Mobile/i;
 
 type DeviceOrientationEventWithPermission = typeof DeviceOrientationEvent & {
@@ -161,6 +164,22 @@ function getHotspotAngles(hotspot: PanoramaHotspot): Pick<PannellumViewerConfig,
   };
 }
 
+function getHotspotMusic(hotspot: PanoramaHotspot) {
+  if (hotspot.id === "circle") {
+    return CIRCULAR_GALLERY_MUSIC;
+  }
+
+  if (hotspot.id === "statue" || hotspot.id === "tree") {
+    return OTTOMAN_GALLERY_MUSIC;
+  }
+
+  if (hotspot.id === "movies") {
+    return IMMERSIVE_THEATER_MUSIC;
+  }
+
+  return PANORAMA_BACKGROUND_MUSIC;
+}
+
 type PanoramaViewerProps = {
   hotspot: PanoramaHotspot;
   onClose: () => void;
@@ -173,6 +192,7 @@ export function PanoramaViewer({ hotspot, onClose }: PanoramaViewerProps) {
   const [error, setError] = useState("");
   const [vrMode, setVrMode] = useState<"closed" | "unsupported" | "ready" | "active">("closed");
   const [vrError, setVrError] = useState("");
+  const [fullscreen, setFullscreen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -198,7 +218,6 @@ export function PanoramaViewer({ hotspot, onClose }: PanoramaViewerProps) {
         viewer = api.viewer(containerRef.current, {
           type: "equirectangular",
           panorama: hotspot.panorama,
-          title: hotspot.label,
           autoLoad: true,
           showControls: true,
           showFullscreenCtrl: false,
@@ -239,7 +258,7 @@ export function PanoramaViewer({ hotspot, onClose }: PanoramaViewerProps) {
   }, [hotspot, onClose]);
 
   useEffect(() => {
-    const backgroundMusic = new Audio(PANORAMA_BACKGROUND_MUSIC);
+    const backgroundMusic = new Audio(getHotspotMusic(hotspot));
     backgroundMusic.loop = true;
     backgroundMusic.preload = "auto";
 
@@ -251,16 +270,56 @@ export function PanoramaViewer({ hotspot, onClose }: PanoramaViewerProps) {
       backgroundMusic.pause();
       backgroundMusic.currentTime = 0;
     };
+  }, [hotspot]);
+
+  useEffect(() => {
+    function handleFullscreenChange() {
+      if (!document.fullscreenElement) {
+        setFullscreen(false);
+      }
+    }
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
   }, []);
 
+  async function enterFullscreen() {
+    setFullscreen(true);
+    await requestLandscapeFullscreen();
+  }
+
+  async function exitFullscreen() {
+    setFullscreen(false);
+    await document.exitFullscreen?.().catch(() => undefined);
+  }
+
   return (
-    <div className="panorama-viewer" role="dialog" aria-modal="true" aria-labelledby="panorama-viewer-title">
+    <div
+      className={`panorama-viewer${fullscreen ? " panorama-viewer--fullscreen" : ""}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="panorama-viewer-title"
+    >
       <div className="panorama-viewer__topbar">
         <div>
           <p>360 Experience</p>
           <h3 id="panorama-viewer-title">{hotspot.label}</h3>
         </div>
         <div className="panorama-viewer__actions">
+          <button
+            className="button button--secondary panorama-viewer__fullscreen-button"
+            type="button"
+            aria-label={fullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            onClick={() => {
+              void (fullscreen ? exitFullscreen() : enterFullscreen());
+            }}
+          >
+            {fullscreen ? <Minimize2 size={18} aria-hidden="true" /> : <Maximize2 size={18} aria-hidden="true" />}
+            <span>{fullscreen ? "Exit" : "Fullscreen"}</span>
+          </button>
           <button
             className="button button--secondary panorama-viewer__vr-button"
             type="button"
@@ -352,7 +411,6 @@ function VRBoxViewer({ hotspot, active, error, onClose, onStart }: VRBoxViewerPr
         const baseConfig = {
           type: "equirectangular" as const,
           panorama: hotspot.panorama,
-          title: hotspot.label,
           autoLoad: true,
           showControls: false,
           showFullscreenCtrl: false,

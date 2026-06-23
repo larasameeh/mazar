@@ -28,83 +28,111 @@ export const navItems: NavItem[] = [
 export const exteriorImages: GalleryImage[] = [
   {
     id: "exterior-01",
-    src: publicAsset("images/exterior/ext-01-waterfront-arrival.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-01-waterfront-arrival.webp"),
-    alt: "Exterior render of MAZAR Maritime Museum with the maritime sign and arrival plaza",
-    caption: "Main approach and waterfront arrival"
+    src: publicAsset("images/exterior/ext-01-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-01-gallery.webp"),
+    alt: "Exterior render of MAZAR Maritime Museum waterfront arrival",
+    caption: "Exterior view 01"
   },
   {
     id: "exterior-02",
-    src: publicAsset("images/exterior/ext-02-cloudy-roofline.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-02-cloudy-roofline.webp"),
-    alt: "Exterior render showing the museum shell roof and kinetic panels under a cloudy sky",
-    caption: "Shell roof and kinetic panel system"
+    src: publicAsset("images/exterior/ext-02-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-02-gallery.webp"),
+    alt: "Exterior render of MAZAR Maritime Museum facade and public plaza",
+    caption: "Exterior view 02"
   },
   {
     id: "exterior-03",
-    src: publicAsset("images/exterior/ext-03-morning-promenade.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-03-morning-promenade.webp"),
-    alt: "Exterior render of the museum promenade at morning light",
-    caption: "Bazaar edge and public promenade"
+    src: publicAsset("images/exterior/ext-03-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-03-gallery.webp"),
+    alt: "Exterior render of MAZAR Maritime Museum approach and landscape",
+    caption: "Exterior view 03"
   },
   {
     id: "exterior-04",
-    src: publicAsset("images/exterior/ext-04-sunset-plaza.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-04-sunset-plaza.webp"),
-    alt: "Sunset exterior render of the museum plaza and waterfront paths",
-    caption: "Amphitheater and public plaza"
+    src: publicAsset("images/exterior/ext-04-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-04-gallery.webp"),
+    alt: "Exterior render of MAZAR Maritime Museum with shell roof massing",
+    caption: "Exterior view 04"
   },
   {
     id: "exterior-05",
-    src: publicAsset("images/exterior/ext-05-planetarium-massing.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-05-planetarium-massing.webp"),
-    alt: "Exterior render showing museum massing and planetarium volume",
-    caption: "Planetarium and museum massing"
+    src: publicAsset("images/exterior/ext-05-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-05-gallery.webp"),
+    alt: "Exterior render showing MAZAR Maritime Museum massing and canopy",
+    caption: "Exterior view 05"
   },
   {
     id: "exterior-06",
-    src: publicAsset("images/exterior/ext-06-water-channel.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-06-water-channel.webp"),
-    alt: "Exterior render of the water channel and shaded museum facade",
-    caption: "Water spine and shaded facade"
+    src: publicAsset("images/exterior/ext-06-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-06-gallery.webp"),
+    alt: "Exterior render of MAZAR Maritime Museum and shaded facade",
+    caption: "Exterior view 06"
   },
   {
     id: "exterior-07",
-    src: publicAsset("images/exterior/ext-07-golden-canopy.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-07-golden-canopy.webp"),
-    alt: "Exterior render of the golden canopy wrapping the museum roof",
-    caption: "Folded canopy over public thresholds"
+    src: publicAsset("images/exterior/ext-07-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-07-gallery.webp"),
+    alt: "Exterior render of MAZAR Maritime Museum entrance sequence",
+    caption: "Exterior view 07"
   },
   {
     id: "exterior-08",
-    src: publicAsset("images/exterior/ext-08-evening-arrival.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-08-evening-arrival.webp"),
+    src: publicAsset("images/exterior/ext-08-gallery.webp"),
+    thumb: publicAsset("images/exterior/thumbnails/ext-08-gallery.webp"),
     alt: "Evening exterior render of MAZAR Maritime Museum",
-    caption: "Evening exterior view"
-  },
-  {
-    id: "exterior-09",
-    src: publicAsset("images/exterior/ext-09-public-garden.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-09-public-garden.webp"),
-    alt: "Exterior render of garden paths beside the museum",
-    caption: "Landscape terraces and garden paths"
-  },
-  {
-    id: "exterior-10",
-    src: publicAsset("images/exterior/ext-10-coastal-perspective.webp"),
-    thumb: publicAsset("images/exterior/thumbnails/ext-10-coastal-perspective.webp"),
-    alt: "Wide exterior render of MAZAR Maritime Museum against the coast",
-    caption: "Coastal perspective and museum silhouette"
+    caption: "Exterior view 08"
   }
 ];
 
 export const interiorImages: GalleryImage[] = [
   {
     id: "interior-01",
-    src: publicAsset("images/interior/int-01-main-hall.webp"),
-    thumb: publicAsset("images/interior/thumbnails/int-01-main-hall.webp"),
-    alt: "Interior 360 render of MAZAR Maritime Museum's main exhibition hall",
-    caption: "Main Hall — Maritime Heritage Exhibition"
+    src: publicAsset("images/interior/int-01-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-01-gallery.webp"),
+    alt: "Interior render of MAZAR Maritime Museum exhibition space",
+    caption: "Interior view 01"
+  },
+  {
+    id: "interior-02",
+    src: publicAsset("images/interior/int-02-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-02-gallery.webp"),
+    alt: "Interior render of MAZAR Maritime Museum immersive exhibition route",
+    caption: "Interior view 02"
+  },
+  {
+    id: "interior-03",
+    src: publicAsset("images/interior/int-03-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-03-gallery.webp"),
+    alt: "Interior render of MAZAR Maritime Museum display area",
+    caption: "Interior view 03"
+  },
+  {
+    id: "interior-04",
+    src: publicAsset("images/interior/int-04-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-04-gallery.webp"),
+    alt: "Interior render of MAZAR Maritime Museum gallery lighting and circulation",
+    caption: "Interior view 04"
+  },
+  {
+    id: "interior-05",
+    src: publicAsset("images/interior/int-05-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-05-gallery.webp"),
+    alt: "Interior render showing MAZAR Maritime Museum exhibits and visitor path",
+    caption: "Interior view 05"
+  },
+  {
+    id: "interior-06",
+    src: publicAsset("images/interior/int-06-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-06-gallery.webp"),
+    alt: "Interior render of MAZAR Maritime Museum atmospheric exhibition zone",
+    caption: "Interior view 06"
+  },
+  {
+    id: "interior-07",
+    src: publicAsset("images/interior/int-07-gallery.webp"),
+    thumb: publicAsset("images/interior/thumbnails/int-07-gallery.webp"),
+    alt: "Interior render of MAZAR Maritime Museum maritime memory route",
+    caption: "Interior view 07"
   }
 ];
 

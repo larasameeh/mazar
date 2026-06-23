@@ -75,6 +75,36 @@ describe("PanoramaViewer", () => {
     expect(audioInstances[0].currentTime).toBe(0);
   });
 
+  it("uses pharaonic music for the Circular Gallery panorama", async () => {
+    render(<PanoramaViewer hotspot={{ ...hotspot, id: "circle", label: "Circular Gallery" }} onClose={vi.fn()} />);
+
+    await waitFor(() => expect(playMock).toHaveBeenCalledTimes(1));
+
+    expect(audioInstances).toHaveLength(1);
+    expect(audioInstances[0].src).toContain("pharonic-music.m4a");
+  });
+
+  it.each([
+    ["statue", "Statue Gallery"],
+    ["tree", "Tree Atrium"]
+  ])("uses ottoman music for the %s panorama", async (id, label) => {
+    render(<PanoramaViewer hotspot={{ ...hotspot, id, label }} onClose={vi.fn()} />);
+
+    await waitFor(() => expect(playMock).toHaveBeenCalledTimes(1));
+
+    expect(audioInstances).toHaveLength(1);
+    expect(audioInstances[0].src).toContain("ottoman-music.m4a");
+  });
+
+  it("uses the Egyptian war song for the Immersive Theater panorama", async () => {
+    render(<PanoramaViewer hotspot={{ ...hotspot, id: "movies", label: "Immersive Theater" }} onClose={vi.fn()} />);
+
+    await waitFor(() => expect(playMock).toHaveBeenCalledTimes(1));
+
+    expect(audioInstances).toHaveLength(1);
+    expect(audioInstances[0].src).toContain("Going forth carrying a weapon - Egyptian War Song - Ingen.mp3");
+  });
+
   it("shows a friendly mobile requirement message when VR Box is opened on desktop", () => {
     render(<PanoramaViewer hotspot={hotspot} onClose={vi.fn()} />);
 
@@ -98,6 +128,30 @@ describe("PanoramaViewer", () => {
     await waitFor(() => expect(window.pannellum?.viewer).toHaveBeenCalledTimes(1));
 
     expect(vi.mocked(window.pannellum?.viewer).mock.calls[0]?.[1]).toMatchObject({ yaw: -35, pitch: 8 });
+  });
+
+  it("does not pass panorama titles that Pannellum renders as image overlays", async () => {
+    render(<PanoramaViewer hotspot={hotspot} onClose={vi.fn()} />);
+
+    await waitFor(() => expect(window.pannellum?.viewer).toHaveBeenCalledTimes(1));
+
+    expect(vi.mocked(window.pannellum?.viewer).mock.calls[0]?.[1]).not.toHaveProperty("title");
+  });
+
+  it("offers a fullscreen option for the 360 viewer and marks the view fullscreen after tapping it", async () => {
+    const requestFullscreen = vi.fn().mockResolvedValue(undefined);
+
+    Object.defineProperty(document.documentElement, "requestFullscreen", {
+      configurable: true,
+      value: requestFullscreen
+    });
+
+    render(<PanoramaViewer hotspot={hotspot} onClose={vi.fn()} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /enter fullscreen/i }));
+
+    await waitFor(() => expect(requestFullscreen).toHaveBeenCalledTimes(1));
+    expect(screen.getByRole("dialog", { name: "Main Hall" }).className).toContain("panorama-viewer--fullscreen");
   });
 
   it("shows the rotate-phone overlay and requests motion permission before starting VR Box mode on mobile", async () => {
@@ -132,6 +186,8 @@ describe("PanoramaViewer", () => {
     expect(requestFullscreen).toHaveBeenCalledTimes(1);
     expect(lock).toHaveBeenCalledWith("landscape");
     await waitFor(() => expect(window.pannellum?.viewer).toHaveBeenCalledTimes(3));
+    expect(vi.mocked(window.pannellum?.viewer).mock.calls[1]?.[1]).not.toHaveProperty("title");
+    expect(vi.mocked(window.pannellum?.viewer).mock.calls[2]?.[1]).not.toHaveProperty("title");
   });
 
   it("waits for Pannellum styles before creating the viewer on first load", async () => {

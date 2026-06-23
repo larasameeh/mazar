@@ -23,7 +23,7 @@ describe("App", () => {
     const navLinks = within(nav).getAllByRole("link");
     const walkthrough = screen.getByRole("region", { name: "Museum Walkthrough" });
     const panorama = screen.getByRole("region", { name: "Enter the exhibition hall in 360 immersive experience" });
-    const exterior = screen.getByRole("region", { name: "The museum as a coastal threshold" });
+    const exterior = screen.getByRole("region", { name: "Exterior Shots" });
     const video = screen.getByTitle("MAZAR museum walkthrough video");
 
     expect(navLinks.map((link) => link.textContent)).toEqual([

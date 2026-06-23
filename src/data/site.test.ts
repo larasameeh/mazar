@@ -1,5 +1,43 @@
 import { describe, expect, it } from "vitest";
-import { panoramaHotspots, panoramaMapImage } from "./site";
+import { exteriorImages, interiorImages, panoramaHotspots, panoramaMapImage } from "./site";
+
+function expectGalleryImages(
+  images: Array<{ id: string; src: string; thumb: string }>,
+  gallery: "exterior" | "interior",
+  prefix: "ext" | "int",
+  count: number
+) {
+  expect(images).toHaveLength(count);
+  expect(
+    images.map(({ id, src, thumb }) => ({
+      id,
+      src,
+      thumb
+    }))
+  ).toEqual(
+    Array.from({ length: count }, (_, index) => {
+      const imageNumber = String(index + 1).padStart(2, "0");
+
+      return {
+        id: `${gallery}-${imageNumber}`,
+        src: expect.stringMatching(new RegExp(`/images/${gallery}/${prefix}-${imageNumber}-gallery\\.webp$`)),
+        thumb: expect.stringMatching(new RegExp(`/images/${gallery}/thumbnails/${prefix}-${imageNumber}-gallery\\.webp$`))
+      };
+    })
+  );
+}
+
+describe("exterior gallery content", () => {
+  it("uses the processed current exterior gallery images and thumbnails", () => {
+    expectGalleryImages(exteriorImages, "exterior", "ext", 8);
+  });
+});
+
+describe("interior gallery content", () => {
+  it("uses the processed current interior gallery images and thumbnails", () => {
+    expectGalleryImages(interiorImages, "interior", "int", 7);
+  });
+});
 
 describe("panorama content", () => {
   it("uses the final 360 map and six processed panorama scenes", () => {

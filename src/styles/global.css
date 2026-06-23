@@ -837,6 +837,35 @@ img {
   padding: 18px;
 }
 
+.panorama-viewer--fullscreen {
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  grid-template-rows: 1fr;
+  padding: 0;
+}
+
+.panorama-viewer--fullscreen .panorama-viewer__topbar {
+  position: absolute;
+  z-index: 3;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(12px, env(safe-area-inset-right));
+  margin: 0;
+}
+
+.panorama-viewer--fullscreen .panorama-viewer__topbar > div:first-child,
+.panorama-viewer--fullscreen .panorama-viewer__description {
+  display: none;
+}
+
+.panorama-viewer--fullscreen .panorama-viewer__canvas {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
 .panorama-viewer__topbar {
   display: flex;
   align-items: center;
@@ -859,6 +888,7 @@ img {
   gap: 10px;
 }
 
+.panorama-viewer__fullscreen-button,
 .panorama-viewer__vr-button {
   min-height: 44px;
   padding: 0 14px;
@@ -918,7 +948,10 @@ img {
 .vr-box-viewer {
   position: fixed;
   z-index: 110;
-  inset: 0;
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
   overflow: hidden;
   background: #050607;
   color: var(--immersive-text);

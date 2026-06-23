@@ -1,4 +1,4 @@
-import { copyFile, mkdir, unlink } from "node:fs/promises";
+import { copyFile, mkdir, readdir, unlink } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -11,18 +11,8 @@ const exteriorSourceDir = path.join(sourceRoot, "exterior renders");
 const interiorSourceDir = path.join(sourceRoot, "interior renders");
 const panoramaSourceDir = path.join(sourceRoot, "panoramic");
 
-const exteriorImages = [
-  ["1_1 - Sunny day.png", "ext-01-waterfront-arrival.webp"],
-  ["1_2 - Cloudy day.png", "ext-02-cloudy-roofline.webp"],
-  ["1_3 - Morning on Vacation.png", "ext-03-morning-promenade.webp"],
-  ["1_4 - Sunset.png", "ext-04-sunset-plaza.webp"],
-  ["1_5 - Photo.png", "ext-05-planetarium-massing.webp"],
-  ["1_6 - Photo.png", "ext-06-water-channel.webp"],
-  ["1_7 - Photo.png", "ext-07-golden-canopy.webp"],
-  ["1_8 - Photo.png", "ext-08-evening-arrival.webp"],
-  ["1_9 - Photo.png", "ext-09-public-garden.webp"],
-  ["1_10 - Photo.png", "ext-10-coastal-perspective.webp"]
-];
+const exteriorGallerySourcePattern = /^ChatGPT Image Jun 23, 2026, .+\.png$/;
+const interiorGallerySourcePattern = /^ChatGPT Image Jun 19, 2026, .+\.png$/;
 
 async function ensureOutputDirs() {
   await Promise.all([
@@ -247,12 +237,37 @@ async function prepareBrand() {
 }
 
 async function prepareExterior() {
+  const exteriorDir = path.join(publicRoot, "images/exterior");
+  const sourceNames = (await readdir(exteriorDir))
+    .filter((fileName) => exteriorGallerySourcePattern.test(fileName))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
   await Promise.all(
-    exteriorImages.flatMap(([sourceName, outputName]) => {
-      const input = path.join(exteriorSourceDir, sourceName);
+    sourceNames.flatMap((sourceName, index) => {
+      const imageNumber = String(index + 1).padStart(2, "0");
+      const outputName = `ext-${imageNumber}-gallery.webp`;
+      const input = path.join(exteriorDir, sourceName);
       const output = path.join(publicRoot, "images/exterior", outputName);
       const thumb = path.join(publicRoot, "images/exterior/thumbnails", outputName);
       return [toWebp(input, output, 2400, 82), toWebp(input, thumb, 460, 72)];
+    })
+  );
+}
+
+async function prepareInterior() {
+  const interiorDir = path.join(publicRoot, "images/interior");
+  const sourceNames = (await readdir(interiorDir))
+    .filter((fileName) => interiorGallerySourcePattern.test(fileName))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+  await Promise.all(
+    sourceNames.flatMap((sourceName, index) => {
+      const imageNumber = String(index + 1).padStart(2, "0");
+      const outputName = `int-${imageNumber}-gallery.webp`;
+      const input = path.join(interiorDir, sourceName);
+      const output = path.join(publicRoot, "images/interior", outputName);
+      const thumb = path.join(publicRoot, "images/interior/thumbnails", outputName);
+      return [toWebp(input, output, 1800, 82), toWebp(input, thumb, 460, 72)];
     })
   );
 }
@@ -286,6 +301,7 @@ await ensureOutputDirs();
 await prepareBrand();
 await prepareHero();
 await prepareExterior();
+await prepareInterior();
 await prepareInteriorAndPanorama();
 await preparePannellumVendor();
 
