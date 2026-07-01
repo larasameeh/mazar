@@ -9,6 +9,7 @@ Static React website for the MAZAR Maritime Museum architecture graduation proje
 - `npm run build` type-checks and builds the static site.
 - `npm run prepare:assets` regenerates optimized public assets from `source-assets/`.
 
+
 ## Content Updates
 
 Primary site content lives in `src/data/site.ts`.
